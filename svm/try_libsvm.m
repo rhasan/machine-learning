@@ -1,5 +1,6 @@
 %% ========== Part 1: Training libSVM ==========
 
+clear ; close all; clc
 
 % Load from ex6data3: 
 % You will have X, y in your environment
