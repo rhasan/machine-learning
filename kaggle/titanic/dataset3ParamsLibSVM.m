@@ -23,36 +23,36 @@ sigma = 0.3;
 %        mean(double(predictions ~= yval))
 %
 
-% 
-% C_vec = [0.01 0.03 0.1 0.3 1 3 10 30]';
-% sigma_vec = [0.01 0.03 0.1 0.3 1 3 10 30]';
-% 
-% min_error = Inf;
-% for i = 1:length(C_vec)
-%     C_try = C_vec(i);
-%     for j = 1:length(sigma_vec)
-%         sigma_try = sigma_vec(j);
-%         % Train the SVM
-%         %model= svmTrain(X, y, C_try, @(x1, x2) gaussianKernel(x1, x2, sigma_try));
-%         
-%         options = sprintf('-c %1.3f -g %1.3f',C_try,sigma_try);
-%         
-%         model = svmtrain(y, X, options);
-%         
-%         %predictions = svmPredict(model, Xval);
-%         [predictions] = svmpredict(yval, Xval, model);
-%         error = mean(double(predictions ~= yval));
-%         if min_error>error
-%             min_error = error;
-%             C = C_try;
-%             sigma = sigma_try;
-%         end
-%         fprintf('C=%f sigma=%f error=%f\n',C_try,sigma_try,error);
-%     end
-% end
-% fprintf('C=%f sigma=%f\n',C,sigma);
-C = 3;
-sigma = 0.1;
+
+C_vec = [0.01 0.03 0.1 0.3 1 3 10 30]';
+sigma_vec = [0.01 0.03 0.1 0.3 1 3 10 30]';
+
+min_error = Inf;
+for i = 1:length(C_vec)
+    C_try = C_vec(i);
+    for j = 1:length(sigma_vec)
+        sigma_try = sigma_vec(j);
+        % Train the SVM
+        %model= svmTrain(X, y, C_try, @(x1, x2) gaussianKernel(x1, x2, sigma_try));
+        
+        options = sprintf('-c %1.3f -g %1.3f',C_try,sigma_try);
+        
+        model = svmtrain(y, X, options);
+        
+        %predictions = svmPredict(model, Xval);
+        [predictions] = svmpredict(yval, Xval, model);
+        error = mean(double(predictions ~= yval));
+        if min_error>error
+            min_error = error;
+            C = C_try;
+            sigma = sigma_try;
+        end
+        fprintf('C=%f sigma=%f error=%f\n',C_try,sigma_try,error);
+    end
+end
+fprintf('C=%f sigma=%f\n',C,sigma);
+%C = 3;
+%sigma = 0.1;
 
 % =========================================================================
 
